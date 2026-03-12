@@ -22,7 +22,7 @@ public class PlaywrightFactory {
         //                                                                                "--disable-features=TranslateUI")));
         
         browser = playwright.firefox().launch(new BrowserType.LaunchOptions()
-                                                             .setHeadless(false)
+                                                             .setHeadless(true)
                                                              .setSlowMo(5000));
     
         PlaywrightFactory.context = browser.newContext(
