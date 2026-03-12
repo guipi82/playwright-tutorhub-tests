@@ -1,0 +1,7 @@
+stepdefinitions\TutorHubSteps.class
+utils\TestContext.class
+stepdefinitions\InscriptionSteps.class
+stepdefinitions\ConnexionSteps.class
+utils\PlaywrightFactory.class
+runners\TestRunner.class
+utils\Hooks.class
