@@ -1,5 +1,6 @@
 package stepdefinitions;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -47,5 +48,28 @@ public class ConnexionSteps {
         }
     }
 
+    @When("der Benutzer gibt die E-mail {string} und das Passwort {string} ein")
+    public void derBenutzerGibtDieEMailUndDasPasswortEin(String email,  String password) {
+        connexionPage = new ConnexionPage(PlaywrightFactory.getPage());
+        connexionPage.enterEmail(email);
+        connexionPage.enterPassword(password);
+    }
+
+    @And("der Benutzer klickt auf \"Se Connecter\"")
+    public void derBenutzerKlicktAufDenSeConnecterButton() {
+        connexionPage.clickSeConnecterButton();
+    }
+
+    @Then("sollte die Fehlermeldung \"Erreur de connexion\" angezeigt werden")
+    public void sollteDieFehlermeldungErreurDeConnexionAngezeigtWerden() {
+        String actualErrorMessage = connexionPage.getErreurDeConnectionText();
+        if (!actualErrorMessage.contains("Erreur de connexion")) {
+            throw new RuntimeException("Die Fehlermeldung ist nicht korrekt. Gefunden: " + actualErrorMessage);
+        }
+        else {
+            System.out.println("Die Fehlermeldung ist korrekt: " + actualErrorMessage);
+            Assert.assertTrue(actualErrorMessage.contains("Erreur de connexion"));
+        }
+    }
 
 }

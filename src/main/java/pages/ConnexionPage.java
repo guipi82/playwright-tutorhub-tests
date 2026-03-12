@@ -13,6 +13,7 @@ public class ConnexionPage {
     private final Locator inputPassword;
     private final Locator seConnecterButton;
     private final Locator NouveauSurTutorHubTitel;
+    private final Locator erreurDeConnection;
 
 
 
@@ -25,6 +26,7 @@ public class ConnexionPage {
         this.inputPassword = page.locator("#login-password");
         this.seConnecterButton = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Se Connecter"));
         this.NouveauSurTutorHubTitel = page.getByRole(AriaRole.HEADING, new Page.GetByRoleOptions().setName("Nouveau sur TutorHub ?"));
+        this.erreurDeConnection = page.getByText("Erreur de connexion. Vérifiez vos identifiants.");
     }
 
     // "Créer un Compte" Button klicken
@@ -39,11 +41,13 @@ public class ConnexionPage {
 
     // Email eingeben
     public void enterEmail(String email) {
+        inputEmail.click();
         inputEmail.fill(email);
     }
 
     // Password eingeben
     public void enterPassword(String password) {
+        inputPassword.click();
         inputPassword.fill(password);
     }
 
@@ -56,4 +60,9 @@ public class ConnexionPage {
     public String getNouveauSurTutorHubTitelText() {
         return NouveauSurTutorHubTitel.textContent();
     }   
+
+    // Fehlermeldung "Erreur de connexion" holen
+    public String getErreurDeConnectionText() {
+        return erreurDeConnection.textContent();
+    }
 }
