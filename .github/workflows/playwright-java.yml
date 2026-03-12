@@ -22,7 +22,7 @@ jobs:
           cache: maven
 
       - name: Install Playwright Browsers
-        run: mvn exec:java -Dexec.mainClass=com.microsoft.playwright.CLI -Dexec.args="install Firefox"
+        run: mvn exec:java -Dexec.mainClass=com.microsoft.playwright.CLI -Dexec.args="install firefox"
 
       - name: Run Tests
         run: mvn clean test
